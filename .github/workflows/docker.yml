@@ -32,15 +32,26 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
 
       # Grab the 'usurp' binary
-      - uses: dsaltares/fetch-gh-release-asset@master
+      # - uses: dsaltares/fetch-gh-release-asset@master
+      #   with:
+      #     repo: "samjarrett/usurp"
+      #     version: "tags/0.0.1"
+      #     file: "usurp_linux_amd64"
+      #     target: ./usurp
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      # - run: chmod +x usurp
+
+      - name: Assume account role
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          repo: "samjarrett/usurp"
-          version: "tags/0.0.1"
-          file: "usurp_linux_amd64"
-          target: ./usurp
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - run: chmod +x usurp
-          
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
+          role-to-assume: zerocube-deploy
+          # role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
+          role-duration-seconds: 1200
+          role-session-name: ${{ github.repository }}-${{ github.sha }}
+
       # -
       #   name: Image digest
       #   run: echo ${{ steps.docker_build.outputs.digest }}
