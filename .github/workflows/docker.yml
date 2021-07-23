@@ -50,7 +50,7 @@ jobs:
           role-to-assume: zerocube-deploy
           # role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
           role-duration-seconds: 1200
-          role-session-name: ${{ github.repository }}-${{ github.sha }}
+          role-session-name: paper-build-and-push
 
       # -
       #   name: Image digest
