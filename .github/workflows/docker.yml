@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ GITHUB_REPOSITORY }}:${{ GITHUB_SHA }}
+          tags: ghcr.io/${{ env.GITHUB_REPOSITORY }}:${{ env.GITHUB_SHA }}
           
       # -
       #   name: Image digest
