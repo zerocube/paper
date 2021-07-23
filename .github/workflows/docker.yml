@@ -4,7 +4,7 @@ on:
   push: {}
 
 jobs:
-  "Docker Build & Push":
+  docker:
     runs-on: ubuntu-latest
     steps:
       -
