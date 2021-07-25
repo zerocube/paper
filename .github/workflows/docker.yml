@@ -50,7 +50,7 @@ jobs:
           role-to-assume: zerocube-deploy
           # role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
           role-duration-seconds: 1200
-          # role-session-name: github-com-zerocube-paper_build-and-push
+          role-session-name: zerocube-paper_build-and-push_${{ github.sha }}
 
       - name: Login to Amazon ECR
         id: login-ecr
