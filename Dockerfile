@@ -8,7 +8,7 @@ RUN apt install -y openjdk-16-jre curl
 WORKDIR /app
 RUN curl \
   -L \
-  -O paper.jar \
+  -o paper.jar \
   "${SOURCE_JAR}"
 
 ENTRYPOINT ["java"]
