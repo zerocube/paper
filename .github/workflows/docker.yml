@@ -47,16 +47,6 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
             873966567782.dkr.ecr.ap-southeast-2.amazonaws.com/game-servers-staging-paper:${{ steps.extract_branch.outputs.branch }}
 
-      # Grab the 'usurp' binary
-      # - uses: dsaltares/fetch-gh-release-asset@master
-      #   with:
-      #     repo: "samjarrett/usurp"
-      #     version: "tags/0.0.1"
-      #     file: "usurp_linux_amd64"
-      #     target: ./usurp
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      # - run: chmod +x usurp
-
-      # -
-      #   name: Image digest
-      #   run: echo ${{ steps.docker_build.outputs.digest }}
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
