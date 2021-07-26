@@ -43,8 +43,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+            # ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
           tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
             873966567782.dkr.ecr.ap-southeast-2.amazonaws.com/game-servers-staging/paper:${{ steps.extract_branch.outputs.branch }}
 
       # Grab the 'usurp' binary
