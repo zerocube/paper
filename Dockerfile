@@ -13,4 +13,6 @@ RUN curl \
 
 ENV JAVA_XMX 1G
 
-ENTRYPOINT ["java", "-Xmx${JAVA_XMX}", "-jar", "/app/paper.jar"]
+COPY ./app/ /app/
+
+ENTRYPOINT ["/app/entrypoint.sh"]
