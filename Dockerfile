@@ -11,4 +11,6 @@ RUN curl \
   -o paper.jar \
   "${SOURCE_JAR}"
 
-ENTRYPOINT ["java"]
+ENV JAVA_XMX 1G
+
+ENTRYPOINT ["java", "-Xmx${JAVA_XMX}", "-jar", "/app/paper.jar"]
