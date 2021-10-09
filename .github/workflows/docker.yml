@@ -35,7 +35,7 @@ jobs:
 
       - name: Ensure containers are still running
         run: |
-          docker-compose exec minecraft echo hi there
+          docker-compose exec -T minecraft echo hi there
 
   docker:
     name: Docker Build
