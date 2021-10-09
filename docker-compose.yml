@@ -1,0 +1,5 @@
+version: '3.7'
+services:
+  minecraft:
+    image: "${DOCKER_IMAGE}"
+    build: "./"
