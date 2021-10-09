@@ -31,10 +31,11 @@ jobs:
       - name: Start containers
         run: |
           docker-compose up --detach
-          timeout 60 docker-compose logs
 
       - name: Ensure containers are still running
         run: |
+          sleep 30
+          docker-compose logs --tail 50
           docker-compose exec -T minecraft echo hi there
 
   docker:
