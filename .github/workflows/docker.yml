@@ -39,7 +39,9 @@ jobs:
 
   docker:
     name: Docker Build
-    needs: [test_run]
+    needs:
+      - metadata
+      - test_run
     runs-on: ubuntu-20.04
     steps:
       - name: Set up QEMU
