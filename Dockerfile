@@ -16,3 +16,5 @@ ENV JAVA_XMX 1G
 COPY ./app/ /app/
 
 ENTRYPOINT ["/app/entrypoint.sh"]
+
+RUN /app/entrypoint.sh --version
