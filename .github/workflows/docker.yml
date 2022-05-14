@@ -1,27 +1,13 @@
 name: Docker Build & Push
 on:
-  push:
+  push: {}
 
 jobs:
-
-  metadata:
-    name: Gather Metadata
-    runs-on: ubuntu-20.04
-    outputs:
-      branch_name: ${{ steps.extract_branch.outputs.branch }}
-      docker_image: ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
-    steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
   test_run:
-    needs: [metadata]
     name: Test Run
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE: ${{ needs.metadata.outputs.docker_image }}
+      DOCKER_IMAGE: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v2
 
@@ -40,9 +26,7 @@ jobs:
 
   docker:
     name: Docker Build
-    needs:
-      - metadata
-      - test_run
+    needs: [test_run]
     runs-on: ubuntu-20.04
     steps:
       - name: Set up QEMU
@@ -59,10 +43,10 @@ jobs:
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ needs.metadata.outputs.docker_image }}
+          tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
