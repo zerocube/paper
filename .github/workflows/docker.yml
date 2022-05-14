@@ -26,9 +26,7 @@ jobs:
 
   docker:
     name: Docker Build
-    needs:
-      - metadata
-      - test_run
+    needs: [test_run]
     runs-on: ubuntu-20.04
     steps:
       - name: Set up QEMU
@@ -45,7 +43,7 @@ jobs:
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           push: true
           tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
