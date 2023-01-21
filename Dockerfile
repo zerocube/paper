@@ -1,6 +1,6 @@
 FROM openjdk:18-slim
 
-ARG SOURCE_JAR=https://api.papermc.io/v2/projects/paper/versions/1.19/builds/61/downloads/paper-1.19-61.jar
+ARG SOURCE_JAR=https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/378/downloads/paper-1.19.3-378.jar
 
 RUN apt update
 RUN apt install -y curl
