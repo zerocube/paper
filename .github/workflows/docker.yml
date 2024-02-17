@@ -30,7 +30,8 @@ jobs:
   docker:
     name: Docker Build
     needs: [test_run]
-    runs-on: ubuntu-latest
+    # Run on the GitHub-hosted runners - AWS runners have issues downloading the Mojang JAR file
+    runs-on: ubuntu-20.04
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
