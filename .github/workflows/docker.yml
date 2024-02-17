@@ -24,6 +24,9 @@ jobs:
           docker compose logs --tail 50
           docker compose exec -T minecraft echo hi there
 
+      - name: Clean up docker resources
+        run: docker compose down --volumes
+
   docker:
     name: Docker Build
     needs: [test_run]
