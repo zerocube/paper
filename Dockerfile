@@ -1,9 +1,9 @@
-FROM openjdk:18-slim
+FROM ubuntu:24.04
 
 ARG SOURCE_JAR=https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/426/downloads/paper-1.20.4-426.jar
 
 RUN apt update
-RUN apt install -y curl
+RUN apt install -y curl openjdk-8-jre
 
 WORKDIR /app
 RUN curl \
